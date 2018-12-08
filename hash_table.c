@@ -46,7 +46,7 @@ create_table(size_t size)
 	if (!table->items)
 		return NULL;
 	
-	table->capacity = 1;
+	table->capacity = size;
 	
 	return table;
 }
