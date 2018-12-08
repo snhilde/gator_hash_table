@@ -125,7 +125,7 @@ get_index(Table *table, const char *key)
 	return index;
 }
 
-void
+static void
 link_in(Item **head, Item *item)
 {
 	while (*head && strcmp((*head)->key, item->key) != 0)
@@ -134,7 +134,7 @@ link_in(Item **head, Item *item)
 	*head = item;
 }
 
-void
+static void
 unlink(Item **head, Item *item)
 {
 	while (strcmp((*head)->key, item->key) != 0)
