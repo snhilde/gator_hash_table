@@ -1,8 +1,8 @@
 #include "hash_table.h"
 
 typedef struct _Item {
-	char *key;
-	char *value;
+	const char *key;
+	const char *value;
 	struct _Item *next;
 } Item;
 
@@ -176,7 +176,7 @@ insert_item(Table *table, const char *key, const char *value)
 	return 0;
 }
 
-char *
+const char *
 lookup(Table *table, const char *key)
 {
 	size_t index;
