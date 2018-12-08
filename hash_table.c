@@ -55,17 +55,17 @@ static size_t
 enumerate(Table *table, int flag)
 {
 	size_t count = 0, i;
-	Item **item, *list;
+	Item **list, *item;
 	
 	if (flag)
 		printf("\n*** all items in table: ***");
 	
-	for (i = 0, item = table->items; i < table->capacity; i++, item++)
-		for (list = *item; list; list = list->next) {
+	for (i = 0, list = table->items; i < table->capacity; i++, list++)
+		for (item = *list; item; item = item->next) {
 			if (!flag)
 				count++;
 			if (flag)
-				printf("\n\nkey: %s\nvalue: %s", list->key, list->value);
+				printf("\n\nkey: %s\nvalue: %s", item->key, item->value);
 			}
 	
 	if (!flag)
@@ -143,6 +143,16 @@ unlink(Item **head, Item *item)
 	*head = item->next;
 }
 
+static void
+destroy_item(Item **head_item, Item *item)
+{
+	unlink(head_item, item);
+	
+	free(item->key);
+	free(item->value);
+	free(item);
+}
+
 static int
 replace_value(Item *item, const char *value)
 {
@@ -201,11 +211,21 @@ gatortable_remove(Table *table, const char *key)
 	if (!item)
 		return -1;
 	
-	unlink(&table->items[index], item);
-	
-	free(item->key);
-	free(item->value);
-	free(item);
+	destroy_item(&table->items[index], item);
 	
 	return 0;
+}
+
+void
+gatortable_destroy(Table *table)
+{
+	size_t i;
+	Item **list;
+	
+	for (i = 0, list = table->items; i < table->capacity; i++, list++)
+		while (*list)
+			destroy_item(list, *list);
+	
+	free(table->items);
+	free(table);
 }

@@ -32,5 +32,7 @@ main(int argc, char *argv[])
 	printf("num items in table after delete: %ji\n", gatortable_count(table));
 	gatortable_print(table);
 	
+	gatortable_destroy(table);
+	
 	return 0;
 }

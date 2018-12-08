@@ -5,6 +5,7 @@
 typedef struct _Table Table;
 
 Table * gatortable_create(size_t capacity);
+void gatortable_destroy(Table *table);
 int gatortable_insert(Table * table, const char *key, const char *value);
 const char * gatortable_lookup(Table *table, const char *key);
 int gatortable_remove(Table *table, const char *key);
