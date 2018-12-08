@@ -20,15 +20,13 @@ create_item(const char *key, const char *value)
 	if (!item)
 		return NULL;
 	
-	item->key = malloc(sizeof(char) * strlen(key));
+	item->key = strdup(key);
 	if (!item->key)
 		return NULL;
-	strcpy(item->key, key);
 	
-	item->value = malloc(sizeof(char) * strlen(value));
+	item->value = strdup(value);
 	if (!item->value)
 		return NULL;
-	strcpy(item->value, value);
 	
 	item->next = NULL;
 	
@@ -149,12 +147,9 @@ int
 replace_value(Item *item, const char *value)
 {
 	free(item->value);
-	
-	item->value = malloc(sizeof(*item->value) * strlen(value));
+	item->value = strdup(value);
 	if (!item->value)
 		return -1;
-	
-	strcpy(item->value, value);
 	
 	return 0;
 }
