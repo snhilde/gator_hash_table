@@ -60,7 +60,7 @@ enumerate(Table *table, int flag)
 	if (flag)
 		printf("\n*** all items in table: ***");
 	
-	for (i = 0, item = table->items; i < TABLESIZE; i++, item++)
+	for (i = 0, item = table->items; i < table->capacity; i++, item++)
 		for (list = *item; list; list = list->next) {
 			if (!flag)
 				count++;
