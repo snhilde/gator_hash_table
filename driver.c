@@ -5,7 +5,7 @@ main(int argc, char *argv[])
 {
 	Table *table;
 	
-	table = create_table(TABLESIZE);
+	table = create_table(capacity);
 	if (!table)
 		return 1;
 	
