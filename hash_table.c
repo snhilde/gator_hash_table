@@ -143,7 +143,7 @@ unlink(Item **head, Item *item)
 	*head = item->next;
 }
 
-int
+static int
 replace_value(Item *item, const char *value)
 {
 	free(item->value);
