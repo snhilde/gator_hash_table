@@ -34,7 +34,7 @@ create_item(const char *key, const char *value)
 }
 
 Table *
-create_table(size_t size)
+gatortable_create(size_t size)
 {
 	Table *table;
 	
@@ -77,13 +77,13 @@ enumerate(Table *table, int flag)
 }
 
 size_t
-count_items(Table *table)
+gatortable_count(Table *table)
 {
 	return enumerate(table, 0);
 }
 
 size_t
-print_all(Table *table)
+gatortable_print(Table *table)
 {
 	return enumerate(table, 1);
 }
@@ -155,7 +155,7 @@ replace_value(Item *item, const char *value)
 }
 
 int
-insert_item(Table *table, const char *key, const char *value)
+gatortable_insert(Table *table, const char *key, const char *value)
 {
 	size_t index;
 	Item *item;
@@ -177,7 +177,7 @@ insert_item(Table *table, const char *key, const char *value)
 }
 
 const char *
-lookup(Table *table, const char *key)
+gatortable_lookup(Table *table, const char *key)
 {
 	size_t index;
 	Item *item;
@@ -191,7 +191,7 @@ lookup(Table *table, const char *key)
 }
 
 int
-remove_item(Table *table, const char *key)
+gatortable_remove(Table *table, const char *key)
 {
 	size_t index;
 	Item *item;
