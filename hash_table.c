@@ -16,7 +16,7 @@ create_item(const char *key, const char *value)
 {
 	Item *item;
 	
-	item = malloc(sizeof(Item));
+	item = malloc(sizeof(*item));
 	if (!item)
 		return NULL;
 	
@@ -40,11 +40,11 @@ create_table(size_t size)
 {
 	Table *table;
 	
-	table = malloc(sizeof(Table));
+	table = malloc(sizeof(*table));
 	if (!table)
 		return NULL;
 	
-	table->items = calloc(size, sizeof(Item *));
+	table->items = calloc(size, sizeof(*table->items));
 	if (!table->items)
 		return NULL;
 	
@@ -150,7 +150,7 @@ replace_value(Item *item, const char *value)
 {
 	free(item->value);
 	
-	item->value = malloc(sizeof(*value) * strlen(value));
+	item->value = malloc(sizeof(*item->value) * strlen(value));
 	if (!item->value)
 		return -1;
 	
