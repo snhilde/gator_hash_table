@@ -128,8 +128,8 @@ get_index(Table *table, const char *key)
 static void
 link_in(Item **head, Item *item)
 {
-	while (*head && strcmp((*head)->key, item->key) != 0)
-		head = &(*head)->next;
+	if (*head)
+		item->next = *head;
 	
 	*head = item;
 }
