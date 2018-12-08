@@ -1,8 +1,8 @@
 #include "hash_table.h"
 
 typedef struct _Item {
-	const char *key;
-	const char *value;
+	char *key;
+	char *value;
 	struct _Item *next;
 } Item;
 
