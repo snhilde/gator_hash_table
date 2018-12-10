@@ -60,13 +60,14 @@ enumerate(Table *table, int flag)
 	if (flag)
 		printf("\n*** all items in table: ***");
 	
-	for (i = 0, list = table->items; i < table->capacity; i++, list++)
+	for (i = 0, list = table->items; i < table->capacity; i++, list++) {
 		for (item = *list; item; item = item->next) {
 			if (!flag)
 				count++;
 			if (flag)
 				printf("\n\nkey: %s\nvalue: %s", item->key, item->value);
-			}
+		}
+	}
 	
 	if (!flag)
 		return count;
